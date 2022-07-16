@@ -37,7 +37,6 @@ public class MyDataSourceConfig {
 //      设置账号密码
         registrationBean.addInitParameter("loginUsername", "admin");
         registrationBean.addInitParameter("loginPassword", "admin");
-//      还可以设置哪些域名可以访问（在此不在演示）
         return registrationBean;
     }
 

@@ -1,16 +1,28 @@
 package com.itguigu.admin.controller;
 
 import com.itguigu.admin.pojo.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class IndexController {
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @ResponseBody
+    @GetMapping("/sql")
+    public String queryFromDb(){
+        Long aLong = jdbcTemplate.queryForObject("select count(*) from t_user where user_id = 1", Long.class);
+        return aLong.toString();
+    }
 
     /**
      * 登录页面
