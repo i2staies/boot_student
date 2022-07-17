@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 接口全类名-->
+<mapper namespace="com.itguigu.admin.mapper.CityMapper">
+
+    <!--public City insertCity();-->
+    <!--useGeneratedKeys="true"：开启获取自增主键
+        keyProperty：默认将自增主键放到传入的City里面的id中
+    -->
+    <insert id="insertCity" useGeneratedKeys="true" keyProperty="id">
+        insert into city(name,state,country) values (#{name},#{state},#{country})
+    </insert>
+</mapper>
