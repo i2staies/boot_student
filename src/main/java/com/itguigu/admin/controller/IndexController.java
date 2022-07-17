@@ -1,6 +1,9 @@
 package com.itguigu.admin.controller;
 
+import com.itguigu.admin.pojo.City;
 import com.itguigu.admin.pojo.User;
+import com.itguigu.admin.service.CityService;
+import com.itguigu.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -8,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -17,12 +21,45 @@ public class IndexController {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    CityService cityService;
+
+
+
+    @ResponseBody
+    @GetMapping("/city")
+    public City getCityById(@RequestParam("id")String id){
+        return cityService.getCityById(id);
+    }
+
+    @ResponseBody
+    @GetMapping("/saveCity")
+    public Integer saveCity(){
+        City city = new City(null,"lisi","12000","上海");
+        int i = cityService.saveCity(city);
+//        证明在此处的city确实是被自增主键id所赋值了
+//        System.out.println(city);
+
+        return i;
+    }
+
     @ResponseBody
     @GetMapping("/sql")
     public String queryFromDb(){
         Long aLong = jdbcTemplate.queryForObject("select count(*) from t_user where user_id = 1", Long.class);
         return aLong.toString();
     }
+
+    @GetMapping("/user")
+    @ResponseBody
+    public User getUserById(@RequestParam("id") String id){
+        return userService.getUserById(id);
+    }
+
+
 
     /**
      * 登录页面

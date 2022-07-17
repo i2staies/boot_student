@@ -1,2 +1,10 @@
 com\itguigu\admin\BootStudentApplication.class
+com\itguigu\admin\servlet\MyFilter.class
+com\itguigu\admin\pojo\User.class
+com\itguigu\admin\controller\TableController.class
+com\itguigu\admin\config\AdminWebConfig.class
+com\itguigu\admin\interceptor\LoginInterceptor.class
+com\itguigu\admin\servlet\MyServletContextListener.class
+com\itguigu\admin\controller\FormTestController.class
 com\itguigu\admin\controller\IndexController.class
+com\itguigu\admin\servlet\MyServlet.class
